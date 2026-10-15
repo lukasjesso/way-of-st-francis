@@ -1,0 +1,216 @@
+/* The Way of St. Francis: an illuminated leaf set inside Giotto's starry lapis vault. */
+:root {
+  --lapis: #1d3577;
+  --lapis-deep: #10204d;
+  --vellum: #ecdcb0;
+  --vellum-shade: #d9c38c;
+  --ink: #2b1a0e;
+  --umber: #6b4a2b;
+  --vermilion: #b3261e;
+  --gold: #c9a13b;
+  --gold-hi: #f1d77c;
+  --gold-lo: #8a6a1c;
+  --leaf-in: 34px;
+  --serif: 'EB Garamond', 'Garamond', 'Georgia', serif;
+  --gothic: 'Grenze Gotisch', 'UnifrakturMaguntia', 'Georgia', serif;
+  --initial: 'UnifrakturMaguntia', 'Grenze Gotisch', serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #070d22; overflow: hidden; }
+body { font-family: var(--serif); color: var(--ink); }
+
+#viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+#stage {
+  position: relative; width: 1280px; height: 720px; flex: none;
+  transform-origin: center center; overflow: hidden;
+}
+
+/* --- The vault: lapis with gilt stars, as in Giotto's Assisi and Padua ceilings --- */
+#vault {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(255,255,255,.06), transparent 60%),
+    var(--lapis);
+  background-color: var(--lapis);
+}
+#vault::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='%23d9b24c'%3E%3Cpath d='M20 10l2.2 5.6 5.8.4-4.5 3.8 1.5 5.8L20 22.4l-5 3.2 1.5-5.8-4.5-3.8 5.8-.4z'/%3E%3Cpath d='M68 54l2.2 5.6 5.8.4-4.5 3.8 1.5 5.8L68 66.4l-5 3.2 1.5-5.8-4.5-3.8 5.8-.4z'/%3E%3Cpath d='M76 12l1.2 3 3 .2-2.4 2 .8 3-2.6-1.7-2.6 1.7.8-3-2.4-2 3-.2z'/%3E%3Cpath d='M24 70l1.2 3 3 .2-2.4 2 .8 3-2.6-1.7-2.6 1.7.8-3-2.4-2 3-.2z'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: .9;
+}
+
+/* --- The leaf: vellum page with a ruled gilt border --- */
+#leaf {
+  position: absolute; inset: var(--leaf-in);
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255,250,230,.55), transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(150,110,40,.18), transparent 60%),
+    var(--vellum);
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 0 6px var(--lapis-deep), 0 0 0 8px var(--gold-lo), 0 18px 40px rgba(0,0,0,.45);
+  padding: 28px 40px 32px;
+  overflow: hidden;
+}
+#leaf::after { /* fine grain of the skin */
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .22; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .15 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#leaf.dark { background: radial-gradient(ellipse at 50% 30%, #3a2a1a, #120b06 75%); color: var(--vellum); }
+#leaf.night { background: radial-gradient(ellipse at 50% 35%, #34284f, #0d0a1c 75%); color: var(--vellum); }
+#leaf.gold { background: radial-gradient(ellipse at 50% 45%, #fff6d2, var(--gold-hi) 40%, var(--gold) 85%); }
+
+.screen { position: relative; z-index: 1; height: 100%; }
+
+/* --- Type --- */
+h1, h2, h3 { font-family: var(--gothic); font-weight: 500; margin: 0; color: var(--ink); line-height: 1.05; }
+.cite { font-style: italic; font-size: 15px; color: var(--umber); }
+#leaf.dark .cite, #leaf.night .cite { color: var(--vellum-shade); }
+p { margin: 0 0 10px; }
+.initial::first-letter {
+  font-family: var(--initial); float: left; font-size: 66px; line-height: .8;
+  padding: 6px 10px 0 0; color: var(--vermilion);
+  text-shadow: 1px 1px 0 var(--gold);
+}
+.gilt {
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold) 45%, var(--gold-lo));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* --- Buttons --- */
+.btn {
+  font-family: var(--serif); font-size: 21px; font-weight: 600; letter-spacing: .01em;
+  color: var(--vellum); background: var(--vermilion);
+  border: 2px solid var(--gold); padding: 9px 24px 10px; cursor: pointer;
+  box-shadow: 0 3px 0 var(--gold-lo);
+}
+.btn:hover { background: #c7342b; }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--gold-lo); }
+.btn:disabled { opacity: .45; cursor: default; filter: grayscale(.6); }
+.key { font-size: 14px; font-weight: 400; opacity: .8; margin-left: 6px; }
+button:focus-visible { outline: 3px solid var(--gold-hi); outline-offset: 3px; }
+
+#mute {
+  position: absolute; right: 6px; top: 4px; z-index: 5; width: 22px; height: 22px; padding: 0;
+  font-size: 14px; line-height: 20px; color: var(--gold-hi); background: transparent; border: 1px solid var(--gold); cursor: pointer;
+}
+#mute.off { opacity: .4; text-decoration: line-through; }
+
+/* --- Arch frames for icons and portraits --- */
+.arch {
+  position: relative; overflow: hidden; background: var(--lapis-deep);
+  border: 3px solid var(--gold);
+  border-radius: 50% 50% 4px 4px / 34% 34% 4px 4px;
+  box-shadow: 0 0 0 2px var(--gold-lo), 0 6px 14px rgba(0,0,0,.3);
+}
+.arch img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Title --- */
+.title-screen { display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: center; height: 100%; padding: 0 40px; }
+.title-initial {
+  width: 300px; height: 360px; display: grid; place-items: center;
+  background: var(--lapis); border: 4px solid var(--gold);
+  box-shadow: inset 0 0 0 8px var(--lapis-deep), inset 0 0 0 10px var(--gold-lo);
+  font-family: var(--initial); font-size: 210px; line-height: 1;
+}
+.title-initial span { margin-top: -10px; }
+.title-screen h1 { font-size: 86px; color: var(--vermilion); }
+.title-screen h2 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 27px; margin: 16px 0 26px; max-width: 640px; line-height: 1.3; }
+.title-screen .colophon { font-size: 17px; color: var(--umber); margin-bottom: 30px; }
+
+/* --- Select --- */
+.select-screen h1 { font-size: 46px; color: var(--vermilion); }
+.select-screen .sub { font-size: 19px; margin: 4px 0 14px; }
+.roster { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px 18px; }
+.card {
+  display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; text-align: left;
+  padding: 8px; background: rgba(255,248,225,.35); border: 2px solid transparent; cursor: pointer;
+  font-family: var(--serif); color: var(--ink);
+}
+.card b { display: block; font-size: 19px; line-height: 1.15; margin-bottom: 4px; }
+.card small { display: block; font-size: 14px; line-height: 1.25; color: var(--umber); font-style: italic; }
+.card:hover { background: rgba(255,248,225,.7); }
+.card[aria-pressed="true"] { border-color: var(--vermilion); background: rgba(255,248,225,.85); }
+.select-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; }
+.select-foot p { margin: 0; font-size: 18px; max-width: 760px; }
+
+/* --- Guide intro --- */
+.guide-screen { display: grid; grid-template-columns: 470px 1fr; gap: 44px; align-items: center; height: 100%; }
+.guide-screen figure { margin: 0; }
+.guide-screen figure img { width: 470px; display: block; border: 4px solid var(--gold); box-shadow: 0 0 0 3px var(--lapis-deep); }
+.guide-screen figcaption { margin-top: 8px; }
+.guide-screen h1 { font-size: 56px; color: var(--vermilion); margin-bottom: 18px; }
+.guide-screen p { font-size: 22px; line-height: 1.45; }
+.verse { font-size: 24px; font-style: italic; color: var(--vermilion); margin: 14px 0 4px; line-height: 1.35; }
+
+.wounds { display: inline-flex; gap: 5px; vertical-align: middle; margin-left: 4px; }
+.wounds i { width: 9px; height: 9px; background: var(--vermilion); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 0 4px rgba(179,38,30,.8); }
+
+.help-note { margin-top: 8px; font-size: 16px; color: var(--umber); font-style: italic; }
+
+.call {
+  align-self: center; flex: none; width: 170px;
+  font-size: 19px; padding: 10px 12px; background: var(--lapis); border-color: var(--gold); color: var(--gold-hi);
+}
+.call:hover { background: #26439a; }
+
+
+/* --- Pit (fallen) --- */
+.pit { display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: center; height: 100%; padding: 0 20px; }
+.roundel {
+  width: 280px; height: 280px; border-radius: 50%; overflow: hidden; border: 6px solid var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-lo), 0 0 40px rgba(241,215,124,.45);
+  animation: pop .5s cubic-bezier(.2,1.6,.4,1) both;
+}
+.roundel img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; }
+@keyframes pop { from { transform: scale(.3); opacity: 0; } to { transform: none; opacity: 1; } }
+.pit h1 { font-size: 46px; color: var(--gold-hi); margin-bottom: 14px; }
+.pit .opener { font-size: 24px; font-weight: 600; margin-bottom: 10px; }
+.pit .correction { font-size: 22px; line-height: 1.45; }
+.pit .chosen { font-size: 17px; font-style: italic; color: var(--vellum-shade); margin-bottom: 12px; }
+.motto { margin: 14px 0 18px; padding: 8px 14px; border-left: 4px solid var(--gold); font-size: 18px; }
+
+@keyframes into-light { from { transform: translateY(26px); opacity: 0; } to { transform: none; opacity: 1; } }
+.joiners { margin: 14px 0 20px; font-size: 19px; color: var(--umber); font-style: italic; }
+
+/* --- Stigmata --- */
+.laverna { display: grid; grid-template-columns: 420px 1fr; gap: 40px; align-items: center; height: 100%; }
+.seraph { width: 420px; height: 460px; }
+.seraph .wings { transform-origin: 210px 230px; transform-box: view-box; animation: unfold 2.4s ease-out both; }
+@keyframes unfold { from { transform: scale(.2) rotate(-20deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.laverna h1 { font-size: 48px; color: var(--gold-hi); margin-bottom: 14px; }
+.laverna p { font-size: 20px; line-height: 1.42; }
+.laverna .verse { color: #f08b7f; }
+
+/* --- Behind the last door: Buddy --- */
+.buddy-screen { display: grid; grid-template-columns: 360px 1fr; gap: 50px; align-items: center; height: 100%; }
+.buddy-screen .arch { width: 340px; height: 470px; animation: pop .6s cubic-bezier(.2,1.5,.4,1) both; }
+.buddy-screen .arch img { object-position: 50% 0; }
+.buddy-screen h1 { font-size: 50px; color: var(--vermilion); margin-bottom: 14px; }
+.buddy-screen .verse { font-size: 27px; }
+
+/* --- Gate --- */
+.gate-screen { display: grid; grid-template-columns: 520px 1fr; gap: 40px; align-items: center; height: 100%; }
+.gates { position: relative; width: 480px; height: 520px; margin: 0 auto; }
+.gates .glow { position: absolute; inset: 0; clip-path: path('M0 520 V220 C0 100 140 22 240 0 C340 22 480 100 480 220 V520 Z'); background: radial-gradient(ellipse at 50% 70%, #fff, #fff6cf 40%, var(--gold-hi) 70%, var(--gold)); }
+.gates .bar { z-index: 2; position: absolute; top: 0; bottom: 0; width: 240px; transition: transform 2.6s cubic-bezier(.6,0,.2,1) .4s; }
+.gates .bar.l { left: 0; transform-origin: 0 50%; background: repeating-linear-gradient(90deg, var(--gold-lo) 0 6px, transparent 6px 34px); }
+.gates .bar.r { right: 0; transform-origin: 100% 50%; background: repeating-linear-gradient(90deg, transparent 0 28px, var(--gold-lo) 28px 34px); }
+.gates.open .bar.l { transform: perspective(900px) rotateY(80deg); }
+.gates.open .bar.r { transform: perspective(900px) rotateY(-80deg); }
+.rank-flip { font-size: 34px; margin: 6px 0 18px; }
+.rank-flip .was { font-family: var(--gothic); color: var(--ink); text-decoration: line-through; text-decoration-color: var(--vermilion); text-decoration-thickness: 3px; margin-right: 18px; opacity: .7; }
+.rank-flip .now { font-family: var(--gothic); font-size: 50px; color: var(--vermilion); animation: pop .8s cubic-bezier(.2,1.6,.4,1) 1.8s both; display: inline-block; }
+.gate-screen p { font-size: 21px; line-height: 1.4; }
+
+/* --- Ending --- */
+.ending { text-align: center; padding-top: 36px; }
+.ending .lead { font-size: 30px; font-style: italic; margin-bottom: 10px; }
+.ending .big { font-family: var(--initial); font-size: 74px; line-height: 1.1; color: var(--vermilion); margin: 6px 0; }
+.ending .stats { font-size: 19px; margin: 18px 0 18px; color: var(--umber); }
+.ending .credits { font-size: 15.5px; line-height: 1.32; color: #3a2614; max-width: 980px; margin: 0 auto 18px; text-align: left; columns: 2; column-gap: 34px; }
+.ending .credits p { margin: 0 0 6px; break-inside: avoid; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
