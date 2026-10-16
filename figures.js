@@ -33,7 +33,8 @@
   // Returns an <svg> string. opts: { facing: 1|-1, stigmata, pose: 'shoulder'|'thumbs', small, className }
   function figure(id, opts) {
     opts = opts || {};
-    const s = SPECS[id] || SPECS.francis;
+    // opts.divine adds the cruciform nimbus, which iconography reserves for Christ as God.
+    const s = Object.assign({}, SPECS[id] || SPECS.francis, opts.divine ? { halo: true, cross: true } : null);
     const n = ++uid;
     const clip = `fh${n}`;
     const sleeve = s.mantle || s.tunic;

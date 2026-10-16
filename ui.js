@@ -164,7 +164,7 @@
         return renderFallen();
       }
       if (next.phase === 'buddy') {
-        if (door) door.insertAdjacentHTML('beforeend', `<span class="buddy-in-door">${F.figure('buddy', { pose: 'thumbs' })}</span>`);
+        if (door) door.insertAdjacentHTML('beforeend', `<span class="buddy-in-door">${F.figure('buddy', { pose: 'thumbs', divine: true })}</span>`);
         A.play('buddy');
         await wait(1900);
         app.game = next; app.busy = false;
@@ -294,13 +294,14 @@
     setLeaf('gold', `
       <section class="gate-screen">
         <div class="gates" id="gates"><div class="glow"></div>
-          <div class="gate-walkers walking"><span class="gw">${F.figure(app.selected, { stigmata: gm.stigmata })}</span><span class="gw buddy">${F.figure('buddy', { pose: 'thumbs' })}</span></div>
+          <div class="gate-walkers walking"><span class="gw">${F.figure(app.selected, { stigmata: gm.stigmata })}</span><span class="gw buddy">${F.figure('buddy', { pose: 'thumbs', divine: true })}</span></div>
           <div class="bar l"></div><div class="bar r"></div></div>
         <div>
           <p>The gate that would not open from your side opens from His.</p>
-          <p class="rank-flip"><span class="was">Servant</span><span class="now">Friend</span></p>
-          <p class="verse">${esc(g.brethren)}</p>
-          <p class="cite">${esc(g.brethrenCite)}</p>
+          <p class="rank-flip"><span class="was">${esc(g.rankWas)}</span> <span class="now">${esc(g.rankNow)}</span></p>
+          <p class="gate-quote">${esc(g.augustine)} <span class="cite">${esc(g.augustineCite)}</span></p>
+          <p class="gate-quote verse">${esc(g.brethren)} <span class="cite">${esc(g.brethrenCite)}</span></p>
+          <p class="gate-quote">${esc(g.chrysostom)} <span class="cite">${esc(g.chrysostomCite)}</span></p>
           <p style="margin-top:22px"><button class="btn" data-action="finish" data-primary>Continue<span class="key">Enter</span></button></p>
         </div>
       </section>`);
@@ -314,7 +315,7 @@
         <p class="lead">${esc(e.lead)}</p>
         <p class="big">${esc(e.verse)}</p>
         <p class="cite">${esc(e.verseCite)}</p>
-        <p class="stats">${esc(player().name)} reached the end of the Way as a friend of Christ, after ${g.falls} trap door${g.falls === 1 ? '' : 's'} and ${g.helps} call${g.helps === 1 ? '' : 's'} for help.</p>
+        <p class="stats">${esc(player().name)} reached the end of the Way as Christ’s servant and friend, after ${g.falls} trap door${g.falls === 1 ? '' : 's'} and ${g.helps} call${g.helps === 1 ? '' : 's'} for help.</p>
         <div class="credits">${e.credits.map(c => `<p>${esc(c)}</p>`).join('')}</div>
         <button class="btn" data-action="again" data-primary>Walk the Way again<span class="key">Enter</span></button>
         <div class="ending-party"><div class="party walking" style="transform:translateX(330px)">${Wd.party(app.selected, g.brothers, g.stigmata)}</div></div>

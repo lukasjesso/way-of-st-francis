@@ -188,10 +188,18 @@
       buddyLine: '“Henceforth I call you not servants; for the servant knoweth not what his lord doeth: but I have called you friends.”',
       buddyCite: 'John 15:15',
       buddyCaption: 'Buddy Christ (20th century) · Session 16',
-      gregory: '“We were unworthy servants, and he calls us friends.”',
+      gregory: '“How great is our Creator’s mercy! We were unworthy servants, and he calls us friends.”',
       gregoryCite: 'St. Gregory the Great, Forty Gospel Homilies 27',
+      // Friendship does not end service: you stay His servant and become His friend.
+      rankWas: 'Servant',
+      rankNow: 'and Friend',
+      augustine: '“Let us be servants, indeed, with that virtuous fear that distinguishes the servant that enters into the joy of his Lord.”',
+      augustineCite: 'St. Augustine, Tractates on the Gospel of John 85.3',
       brethren: '“He is not ashamed to call them brethren.”',
       brethrenCite: 'Hebrews 2:11',
+      // ...and brotherhood does not erase that He is God and we are creatures.
+      chrysostom: '“…yet he sanctifies and we are sanctified, and great is the difference.”',
+      chrysostomCite: 'St. John Chrysostom, On the Epistle to the Hebrews 4.5',
     },
 
     ending: {

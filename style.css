@@ -199,7 +199,9 @@ button:focus-visible { outline: 3px solid var(--gold-hi); outline-offset: 3px; }
 .gates.open .bar.l { transform: perspective(900px) rotateY(80deg); }
 .gates.open .bar.r { transform: perspective(900px) rotateY(-80deg); }
 .rank-flip { font-size: 34px; margin: 6px 0 18px; }
-.rank-flip .was { font-family: var(--gothic); color: var(--ink); text-decoration: line-through; text-decoration-color: var(--vermilion); text-decoration-thickness: 3px; margin-right: 18px; opacity: .7; }
+.rank-flip .was { font-family: var(--gothic); font-size: 50px; color: var(--ink); margin-right: 6px; }
+.gate-quote { font-size: 18px; line-height: 1.35; margin: 0 0 8px; }
+.gate-quote .cite { font-size: 15px; }
 .rank-flip .now { font-family: var(--gothic); font-size: 50px; color: var(--vermilion); animation: pop .8s cubic-bezier(.2,1.6,.4,1) 1.8s both; display: inline-block; }
 .gate-screen p { font-size: 21px; line-height: 1.4; }
 
