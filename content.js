@@ -171,7 +171,7 @@
       {
         id: 'death', scenery: 'chapel', sky: 'dusk', numeral: 'IX', title: 'Sister Death', place: 'The Portiuncula', date: '3 October 1226', cite: 'Pelikan 135, 138',
         final: true,
-        scene: 'Francis lies dying at the little church he once rebuilt. In a stanza said to come from his last hour, Francis welcomes “Sister Death” as one more gift from God. Before you stands the last gate of the Way, and it does not open from this side.',
+        scene: 'Francis lies dying at the little church he once rebuilt. In a stanza said to come from his last hour, Francis welcomes “Sister Death” as one more gift from God. Before you stands the last gate of the Way, and it does not open from this side. While there is breath, there is still time to turn.',
         guide: { text: '“I am the vine, ye are the branches: He that abideth in me, and I in him, the same bringeth forth much fruit…”', cite: 'John 15:5' },
         doors: [
           { label: 'Trust your record: the poverty, the Rule, the stigmata. You have earned this gate', best: false, cite: 'John 15:5 · Pelikan 133',
